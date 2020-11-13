@@ -45,7 +45,7 @@ class CloudWatch:
                        (heapq.heappop(last_events) for _ in range(min(len(last_events), log_event_limit))))
 
     # https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html
-    def get_events_by_message_id(self, log_group_name: str, message_id: str, log_event_limit: Optional[int] = None) -> Any:  # return type
+    def get_events_by_message_id(self, log_group_name: str, message_id: str, log_event_limit: Optional[int] = 1) -> Any:  # return type
         response = self._session.filter_log_events(
             logGroupName=log_group_name,
             limit=log_event_limit,
